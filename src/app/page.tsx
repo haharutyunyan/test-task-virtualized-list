@@ -1,4 +1,4 @@
-import MasonryGrid from "@/app/MasonryGrid";
+import MasonryGrid from "@/app/components/MasonryGrid";
 
 export default function Home() {
   return (
