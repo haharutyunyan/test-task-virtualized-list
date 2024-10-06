@@ -1,11 +1,11 @@
 "use client";
 
 import React, {
-  useEffect,
   useMemo,
   useRef,
   useState,
   useCallback,
+  useEffect,
 } from "react";
 import { useFetchPhotos } from "../hooks/useFetchPhotos";
 import {
@@ -23,8 +23,8 @@ import useScrollAware from "@/app/hooks/useScrollAware";
 import { findEndNode, findStartNode } from "@/app/helpers/findNode";
 import useWindowResize from "@/app/hooks/useWindowResize";
 import { GRID_AUTO_ROWS, GRID_ITEM_HEIGHT_DIVISOR } from "@/app/constants";
-// @ts-ignore
 import debounce from "lodash.debounce";
+
 import Link from "next/link";
 const MasonryGrid: React.FC = () => {
   const [query, setQuery] = useState<Readonly<string>>("");
@@ -84,7 +84,7 @@ const MasonryGrid: React.FC = () => {
     observer.current = new IntersectionObserver(
       (entries) => {
         // if (entries[0].isIntersecting) {
-          setSize((prev) => prev + 1);
+        setSize((prev) => prev + 1);
         // }
       },
       { threshold: 1 },
@@ -112,7 +112,6 @@ const MasonryGrid: React.FC = () => {
     );
     return visiblePhotosRef.current;
   }, [scrollTop, allPhotos]);
-
 
   const handleSearch = useCallback(
     debounce((value: string) => {

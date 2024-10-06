@@ -30,8 +30,7 @@ export const MasonryGridItem = styled.div<{
   height: number;
   divisor: number;
 }>`
-  grid-row-end: span
-    ${({ height, divisor }) => Math.ceil(height / divisor)};
+  grid-row-end: span ${({ height, divisor }) => Math.ceil(height / divisor)};
   overflow: hidden;
   border-radius: 10px;
   transition: transform 0.3s;

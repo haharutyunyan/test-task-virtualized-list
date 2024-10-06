@@ -3,6 +3,7 @@ export interface UnsplashPhoto {
   user:{name: string}
   created_at: string;
   description: string;
+  alt_description: string;
   urls: {
     full:string;
     small: string;

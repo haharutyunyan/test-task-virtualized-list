@@ -1,11 +1,5 @@
 "use client";
-import {
-  useRef,
-  useState,
-  useEffect,
-  useCallback,
-  RefObject,
-} from "react";
+import { useRef, useState, useEffect, useCallback, RefObject } from "react";
 
 const useScrollAware = (): [number, RefObject<HTMLDivElement>] => {
   const [scrollTop, setScrollTop] = useState(0);

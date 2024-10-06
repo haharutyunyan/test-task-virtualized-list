@@ -18,7 +18,7 @@ interface PhotoDetailsProps {
 }
 
 const PhotoDetails: React.FC<PhotoDetailsProps> = ({ photo }) => {
-  const { urls, user, created_at, description } = photo;
+  const { urls, user, created_at, description, alt_description } = photo;
 const aspectRatio = photo.width / photo.height;
   return (
     <PhotoDetailsWrapper>
@@ -38,7 +38,7 @@ const aspectRatio = photo.width / photo.height;
           <Title>{description || "Untitled"}</Title>
           <Photographer>By {user.name}</Photographer>
           <DateTaken>{new Date(created_at).toLocaleDateString()}</DateTaken>
-          {description && <Description>{description}</Description>}
+          {alt_description && <Description>{alt_description}</Description>}
         </PhotoInfo>
       </PhotoContainer>
     </PhotoDetailsWrapper>
