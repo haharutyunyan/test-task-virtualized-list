@@ -9,7 +9,11 @@ jest.mock('@/app/hooks/useFetchPhotos');
 jest.mock('lodash.debounce');
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props: any) => {
+  default: (
+    props: React.JSX.IntrinsicAttributes &
+      React.ClassAttributes<HTMLImageElement> &
+      React.ImgHTMLAttributes<HTMLImageElement>,
+  ) => {
     return <img {...props} />;
   },
 }));
@@ -48,7 +52,6 @@ describe('MasonryGrid Component', () => {
   });
 
   it('should handle search input and trigger search functionality', async () => {
-    const setSearchTerm = jest.fn();
     render(<MasonryGrid />);
 
     const searchInput = screen.getByPlaceholderText('Search Unsplash...');

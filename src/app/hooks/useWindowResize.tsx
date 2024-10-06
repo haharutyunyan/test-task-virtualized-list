@@ -9,11 +9,12 @@ import {
 } from "@/app/constants";
 
 function useWindowResize(): number {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const WINDOW_WIDTH = typeof window !== "undefined" ? window.innerWidth : 0;
+  const [windowWidth, setWindowWidth] = useState(WINDOW_WIDTH);
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
+      setWindowWidth(WINDOW_WIDTH);
     };
 
     window.addEventListener("resize", handleResize);

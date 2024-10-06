@@ -82,7 +82,7 @@ const MasonryGrid: React.FC = () => {
     if (isLoading) return;
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(
-      (entries) => {
+      () => {
         // if (entries[0].isIntersecting) {
         setSize((prev) => prev + 1);
         // }

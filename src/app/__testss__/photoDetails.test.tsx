@@ -6,7 +6,11 @@ import { UnsplashPhoto } from "@/app/types";
 
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props: any) => {
+  default: (
+    props: React.JSX.IntrinsicAttributes &
+      React.ClassAttributes<HTMLImageElement> &
+      React.ImgHTMLAttributes<HTMLImageElement>,
+  ) => {
     return <img {...props} />;
   },
 }));
