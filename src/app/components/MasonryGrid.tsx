@@ -20,11 +20,12 @@ import {
 import Image from "next/image";
 import { UnsplashPhoto } from "@/app/types";
 import useScrollAware from "@/app/hooks/useScrollAware";
-import { findEndNode, findStartNode } from "@/app/helpers/find-node";
+import { findEndNode, findStartNode } from "@/app/helpers/findNode";
 import useWindowResize from "@/app/hooks/useWindowResize";
 import { GRID_AUTO_ROWS, GRID_ITEM_HEIGHT_DIVISOR } from "@/app/constants";
 // @ts-ignore
 import debounce from "lodash.debounce";
+import Link from "next/link";
 const MasonryGrid: React.FC = () => {
   const [query, setQuery] = useState<Readonly<string>>("");
   const [searchTerm, setSearchTerm] = useState(""); // State for debounced search term
@@ -137,29 +138,31 @@ const MasonryGrid: React.FC = () => {
         />
       </StickySearchWrapper>
       <Container ref={gridRef}>
-        <MasonryGridContainer height={totalHeight} translatey={scrollOffset}>
-          {visiblePhotos.map((photo, index) => {
+        <MasonryGridContainer height={totalHeight} offset={scrollOffset}>
+          {visiblePhotos.map((photo) => {
             const isLastPhoto = photo.id === lastPhotoId;
             return (
               <MasonryGridItem
                 divisor={GRID_ITEM_HEIGHT_DIVISOR}
-                absheight={photo.height}
+                height={photo.height}
                 key={photo.id}
                 ref={(element) => {
                   if (isLastPhoto) lastPhotoRef.current = element;
                 }}
               >
-                <ImageWrapper>
-                  <Image
-                    src={photo.urls.regular}
-                    alt={`Photo by Unsplash`}
-                    fill
-                    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    placeholder="blur"
-                    blurDataURL={photo.urls.thumb}
-                    priority
-                  />
-                </ImageWrapper>
+                <Link href={`/${photo.id}`}>
+                  <ImageWrapper>
+                    <Image
+                      src={photo.urls.regular}
+                      alt={`Photo by ${photo.user.name}`}
+                      fill
+                      sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      placeholder="blur"
+                      blurDataURL={photo.urls.thumb}
+                      priority
+                    />
+                  </ImageWrapper>
+                </Link>
               </MasonryGridItem>
             );
           })}

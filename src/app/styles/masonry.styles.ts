@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 export const MasonryGridContainer = styled.div<{
   height: number;
-  translatey: number;
+  offset: number;
 }>`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -14,7 +14,7 @@ export const MasonryGridContainer = styled.div<{
   padding: 10px;
   grid-auto-rows: 10px;
   height: ${({ height }) => `${height}px`};
-  transform: translateY(${({ translatey }) => `${translatey}px`});
+  transform: translateY(${({ offset }) => `${offset}px`});
   position: relative;
   overflow: hidden;
   @media (max-width: 1200px) {
@@ -27,11 +27,11 @@ export const MasonryGridContainer = styled.div<{
 `;
 
 export const MasonryGridItem = styled.div<{
-  absheight: number;
+  height: number;
   divisor: number;
 }>`
   grid-row-end: span
-    ${({ absheight, divisor }) => Math.ceil(absheight / divisor)};
+    ${({ height, divisor }) => Math.ceil(height / divisor)};
   overflow: hidden;
   border-radius: 10px;
   transition: transform 0.3s;
